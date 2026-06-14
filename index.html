@@ -14,9 +14,9 @@
       theme: {
         extend: {
           colors: {
-            night:   { DEFAULT: '#1C2B3A', light: '#2E4057' },
-            sky:     { DEFAULT: '#2A87D0', light: '#7EC8E3', pale: '#E8EEF4' },
-            slate:   { DEFAULT: '#6B7A8D', light: '#CBD5E0', pale: '#F7F9FB' },
+            night:  { DEFAULT: '#1C2B3A', light: '#2E4057' },
+            sky:    { DEFAULT: '#2A87D0', light: '#7EC8E3', pale: '#E8EEF4' },
+            slate:  { DEFAULT: '#6B7A8D', light: '#CBD5E0', pale: '#F7F9FB' },
           },
           fontFamily: {
             display: ['Space Grotesk', 'sans-serif'],
@@ -29,74 +29,137 @@
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: #F7F9FB; color: #1C2B3A; }
-    .font-display { font-family: 'Space Grotesk', sans-serif; }
 
-    /* Logo SVG inline */
-    .logo-icon { display: inline-block; vertical-align: middle; }
-
-    /* Nav link hover */
+    /* Nav */
     .nav-link { transition: color .15s; }
     .nav-link:hover { color: #7EC8E3; }
 
-    /* Screen mockup fade-in rows */
+    /* Hero mockup rows */
     .screen-row { animation: fadeUp .4s ease both; }
-    .screen-row:nth-child(2) { animation-delay: .1s; }
-    .screen-row:nth-child(3) { animation-delay: .2s; }
-    .screen-row:nth-child(4) { animation-delay: .3s; }
-    .screen-row:nth-child(5) { animation-delay: .4s; }
+    .screen-row:nth-child(2){ animation-delay:.1s; }
+    .screen-row:nth-child(3){ animation-delay:.2s; }
+    .screen-row:nth-child(4){ animation-delay:.3s; }
+    .screen-row:nth-child(5){ animation-delay:.4s; }
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity:0; transform:translateY(8px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
-    /* Feat card hover */
+    /* Cards */
     .feat-card { transition: border-color .2s, transform .2s; }
-    .feat-card:hover { border-color: #2A87D0; transform: translateY(-2px); }
-
-    /* Module card hover */
-    .mod-card { transition: background .2s; }
-    .mod-card:hover { background: #2E4057; }
-
-    /* WhatsApp button pulse */
-    .wa-btn { box-shadow: 0 0 0 0 rgba(37,211,102,.5); animation: waPulse 2s infinite; }
-    @keyframes waPulse {
-      0%   { box-shadow: 0 0 0 0 rgba(37,211,102,.5); }
-      70%  { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
-      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-    }
-
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .feat-card:hover { border-color:#2A87D0; transform:translateY(-2px); }
+    .mod-card  { transition: background .2s; }
+    .mod-card:hover { background:#2E4057; }
 
     /* Pill states */
-    .pill-ok     { background: rgba(42,135,208,.15); color: #2A87D0; }
-    .pill-warn   { background: rgba(239,159,39,.15);  color: #BA7517; }
-    .pill-danger { background: rgba(226,75,74,.15);   color: #A32D2D; }
-    .pill-gray   { background: rgba(107,122,141,.15); color: #6B7A8D; }
+    .pill-ok     { background:rgba(42,135,208,.15); color:#2A87D0; }
+    .pill-warn   { background:rgba(239,159,39,.15);  color:#BA7517; }
+    .pill-danger { background:rgba(226,75,74,.15);   color:#A32D2D; }
+    .pill-gray   { background:rgba(107,122,141,.15); color:#6B7A8D; }
 
-    /* Section divider line */
-    .divider { width: 48px; height: 3px; background: #2A87D0; border-radius: 2px; margin: 0 auto 1.5rem; }
+    /* Divider */
+    .divider { width:48px; height:3px; background:#2A87D0; border-radius:2px; margin:0 auto 1.5rem; }
 
-    @media (max-width: 768px) {
-      .hero-grid   { grid-template-columns: 1fr !important; }
-      .stats-grid  { grid-template-columns: repeat(2,1fr) !important; }
-      .feat-grid   { grid-template-columns: 1fr !important; }
-      .mod-grid    { grid-template-columns: 1fr !important; }
-      .roles-grid  { grid-template-columns: repeat(2,1fr) !important; }
-      .nav-links   { display: none; }
+    /* Scroll reveal */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* WhatsApp pulse */
+    .wa-btn { box-shadow:0 0 0 0 rgba(37,211,102,.5); animation:waPulse 2s infinite; }
+    @keyframes waPulse {
+      0%  { box-shadow:0 0 0 0   rgba(37,211,102,.5); }
+      70% { box-shadow:0 0 0 10px rgba(37,211,102,0); }
+      100%{ box-shadow:0 0 0 0   rgba(37,211,102,0); }
+    }
+
+    /* ── CARRUSEL ───────────────────────────── */
+    .carousel-track {
+      display: flex;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      padding: 0 12px;
+    }
+    .carousel-slide img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(28,43,58,.35), 0 2px 8px rgba(28,43,58,.2);
+      display: block;
+    }
+    /* Browser chrome frame */
+    .browser-frame {
+      background: #2E4057;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 0.5px solid rgba(126,200,227,.2);
+    }
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      background: #243447;
+      border-bottom: 0.5px solid rgba(126,200,227,.12);
+    }
+    .browser-dot { width:10px; height:10px; border-radius:50%; }
+    .browser-url {
+      flex:1; margin-left:10px;
+      background: rgba(255,255,255,.06);
+      border-radius:6px;
+      padding: 3px 12px;
+      font-size:11px;
+      color:#6B7A8D;
+      font-family: 'Inter', monospace;
+    }
+    .browser-body img {
+      width:100%; display:block;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    /* Dots */
+    .carousel-dot {
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(126,200,227,.3);
+      border:none; cursor:pointer;
+      transition: background .2s, transform .2s;
+    }
+    .carousel-dot.active {
+      background:#2A87D0;
+      transform: scale(1.3);
+    }
+
+    /* Thumbnail strip */
+    .thumb {
+      cursor:pointer;
+      border-radius:8px;
+      overflow:hidden;
+      border:2px solid transparent;
+      transition: border-color .2s, transform .2s;
+      opacity:.6;
+    }
+    .thumb:hover { opacity:1; }
+    .thumb.active { border-color:#2A87D0; opacity:1; transform:scale(1.03); }
+    .thumb img { width:100%; height:52px; object-fit:cover; display:block; }
+
+    /* Responsive */
+    @media(max-width:768px){
+      .hero-grid  { grid-template-columns:1fr !important; }
+      .stats-grid { grid-template-columns:repeat(2,1fr) !important; }
+      .feat-grid  { grid-template-columns:1fr !important; }
+      .mod-grid   { grid-template-columns:1fr !important; }
+      .roles-grid { grid-template-columns:repeat(2,1fr) !important; }
+      .nav-links  { display:none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════════ -->
-<nav class="bg-night sticky top-0 z-50" style="border-bottom: 0.5px solid rgba(126,200,227,.15);">
+<!-- ═══════════════ NAVBAR ═══════════════════ -->
+<nav class="bg-night sticky top-0 z-50" style="border-bottom:0.5px solid rgba(126,200,227,.15);">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-
-    <!-- Brand -->
     <a href="#inicio" class="flex items-center gap-3 no-underline">
       <svg width="32" height="32" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <rect width="80" height="80" rx="12" fill="#2E4057"/>
@@ -107,339 +170,415 @@
         <rect x="38" y="26" width="6" height="24" rx="2" fill="white"/>
         <rect x="46" y="30" width="6" height="20" rx="2" fill="#7EC8E3" opacity=".85"/>
       </svg>
-      <span class="font-display font-bold text-white text-xl tracking-widest">GISSO</span>
+      <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:1.2rem; letter-spacing:.2em;">GISSO</span>
     </a>
-
-    <!-- Links -->
     <div class="nav-links flex items-center gap-8">
+      <a href="#sistema"   class="nav-link text-sm text-sky-light no-underline">El sistema</a>
       <a href="#modulos"   class="nav-link text-sm text-sky-light no-underline">Módulos</a>
       <a href="#beneficios" class="nav-link text-sm text-sky-light no-underline">Beneficios</a>
       <a href="#roles"     class="nav-link text-sm text-sky-light no-underline">Roles</a>
       <a href="#contacto"  class="nav-link text-sm text-sky-light no-underline">Contacto</a>
     </div>
-
-    <!-- CTA -->
-    <a href="https://wa.me/5493884633642?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
+    <a href="https://wa.me/5493884000000?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
        target="_blank" rel="noopener"
-       class="bg-sky text-white text-sm font-medium px-5 py-2.5 rounded-lg no-underline hover:bg-sky-light transition-colors">
+       class="bg-sky text-white text-sm font-medium px-5 py-2.5 rounded-lg no-underline hover:opacity-90 transition-opacity">
       Solicitar demo
     </a>
-
   </div>
 </nav>
 
 
-<!-- ═══════════════════════════════════════════
-     HERO
-════════════════════════════════════════════ -->
+<!-- ═══════════════ HERO ══════════════════════ -->
 <section id="inicio" class="bg-night py-20 px-6">
   <div class="max-w-6xl mx-auto hero-grid grid grid-cols-2 gap-16 items-center">
-
-    <!-- Left -->
     <div>
       <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full text-xs font-medium text-sky-light"
-           style="background: rgba(42,135,208,.15); border: 0.5px solid rgba(42,135,208,.4);">
+           style="background:rgba(42,135,208,.15); border:0.5px solid rgba(42,135,208,.4);">
         ✦ Plataforma para la industria minera argentina
       </div>
-      <h1 class="font-display font-bold text-white leading-tight mb-6" style="font-size: 2.75rem;">
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:2.6rem; line-height:1.2; color:white; margin-bottom:1.25rem;">
         Salud y seguridad<br>
-        <span class="text-sky">bajo control,</span><br>
+        <span style="color:#2A87D0;">bajo control,</span><br>
         desde el campo.
       </h1>
-      <p class="text-slate-light text-base leading-relaxed mb-8 max-w-md">
+      <p class="text-slate-light text-sm leading-relaxed mb-8 max-w-md">
         GISSO centraliza la gestión de muestras higiénicas, equipos, calibraciones y reportes de seguridad ocupacional en una sola plataforma. Sin papeles, sin hojas de cálculo.
       </p>
       <div class="flex flex-wrap gap-4">
-        <a href="https://wa.me/5493884633642?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
+        <a href="https://wa.me/5493884000000?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
            target="_blank" rel="noopener"
            class="inline-flex items-center gap-2 bg-sky text-white font-medium px-6 py-3 rounded-lg no-underline hover:opacity-90 transition-opacity">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.12 1.523 5.855L.057 23.272a.75.75 0 00.918.899l5.535-1.453A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.96-1.357l-.356-.211-3.684.968.983-3.594-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.12 1.523 5.855L.057 23.272a.75.75 0 00.918.899l5.535-1.453A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.96-1.357l-.356-.211-3.684.968.983-3.594-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
           Solicitar demo por WhatsApp
         </a>
-        <a href="#modulos"
-           class="inline-flex items-center gap-2 text-sky-light font-medium px-6 py-3 rounded-lg no-underline transition-colors"
-           style="border: 0.5px solid rgba(126,200,227,.4);">
-          Ver módulos →
+        <a href="#sistema"
+           class="inline-flex items-center gap-2 text-sky-light font-medium px-6 py-3 rounded-lg no-underline"
+           style="border:0.5px solid rgba(126,200,227,.4);">
+          Ver el sistema →
         </a>
       </div>
     </div>
 
-    <!-- Right: screen mockup -->
-    <div class="rounded-2xl p-5" style="background:#2E4057; border: 0.5px solid rgba(126,200,227,.2);">
-      <!-- Window bar -->
+    <!-- Hero mockup -->
+    <div class="rounded-2xl p-5" style="background:#2E4057; border:0.5px solid rgba(126,200,227,.2);">
       <div class="flex items-center gap-2 mb-4">
         <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
         <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
         <div class="w-2.5 h-2.5 rounded-full bg-sky"></div>
         <span class="text-sky-light text-xs ml-2 font-medium">GISSO — Registro de Equipos</span>
       </div>
-      <!-- Table header -->
       <div class="grid text-xs font-medium text-slate mb-2 pb-2"
-           style="grid-template-columns: 2fr 1.2fr 1fr; border-bottom: 0.5px solid rgba(126,200,227,.15);">
-        <span>Equipo</span>
-        <span>Estado</span>
-        <span>Vencimiento</span>
+           style="grid-template-columns:2fr 1.2fr 1fr; border-bottom:0.5px solid rgba(126,200,227,.15);">
+        <span>Equipo</span><span>Estado</span><span>Vencimiento</span>
       </div>
-      <!-- Rows -->
       <div class="space-y-2">
         <div class="screen-row grid text-xs text-slate-light py-2 items-center"
-             style="grid-template-columns: 2fr 1.2fr 1fr; border-bottom: 0.5px solid rgba(255,255,255,.05);">
+             style="grid-template-columns:2fr 1.2fr 1fr; border-bottom:0.5px solid rgba(255,255,255,.05);">
           <span class="text-white">Sonómetro SV34B</span>
           <span><span class="pill-warn text-xs px-2 py-0.5 rounded-full font-medium">Próx. a vencer</span></span>
           <span>23/06/2026</span>
         </div>
         <div class="screen-row grid text-xs text-slate-light py-2 items-center"
-             style="grid-template-columns: 2fr 1.2fr 1fr; border-bottom: 0.5px solid rgba(255,255,255,.05);">
+             style="grid-template-columns:2fr 1.2fr 1fr; border-bottom:0.5px solid rgba(255,255,255,.05);">
           <span class="text-white">Luxómetro HD450</span>
           <span><span class="pill-ok text-xs px-2 py-0.5 rounded-full font-medium">Calibrado</span></span>
           <span>18/08/2026</span>
         </div>
         <div class="screen-row grid text-xs text-slate-light py-2 items-center"
-             style="grid-template-columns: 2fr 1.2fr 1fr; border-bottom: 0.5px solid rgba(255,255,255,.05);">
+             style="grid-template-columns:2fr 1.2fr 1fr; border-bottom:0.5px solid rgba(255,255,255,.05);">
           <span class="text-white">Bomba DRAGER X-am</span>
           <span><span class="pill-danger text-xs px-2 py-0.5 rounded-full font-medium">Fin de vida útil</span></span>
           <span>—</span>
         </div>
         <div class="screen-row grid text-xs text-slate-light py-2 items-center"
-             style="grid-template-columns: 2fr 1.2fr 1fr; border-bottom: 0.5px solid rgba(255,255,255,.05);">
+             style="grid-template-columns:2fr 1.2fr 1fr; border-bottom:0.5px solid rgba(255,255,255,.05);">
           <span class="text-white">Termo anemómetro AVM-07</span>
           <span><span class="pill-ok text-xs px-2 py-0.5 rounded-full font-medium">Calibrado</span></span>
           <span>27/02/2027</span>
         </div>
         <div class="screen-row grid text-xs text-slate-light py-2 items-center"
-             style="grid-template-columns: 2fr 1.2fr 1fr;">
+             style="grid-template-columns:2fr 1.2fr 1fr;">
           <span class="text-white">Anemómetro MS6250</span>
           <span><span class="pill-gray text-xs px-2 py-0.5 rounded-full font-medium">Standby</span></span>
           <span>06/12/2026</span>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     STATS BAR
-════════════════════════════════════════════ -->
-<div class="bg-night-light stats-grid grid grid-cols-4" style="border-top: 0.5px solid rgba(126,200,227,.1);">
-  <div class="py-8 px-6 text-center" style="border-right: 0.5px solid rgba(126,200,227,.1);">
-    <div class="font-display font-bold text-sky text-3xl">100%</div>
+<!-- ═══════════════ STATS ═════════════════════ -->
+<div class="bg-night-light stats-grid grid grid-cols-4" style="border-top:0.5px solid rgba(126,200,227,.1);">
+  <div class="py-8 px-6 text-center" style="border-right:0.5px solid rgba(126,200,227,.1);">
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#2A87D0; font-size:1.8rem;">100%</div>
     <div class="text-slate-light text-xs mt-1.5 leading-snug">Trazabilidad de muestras</div>
   </div>
-  <div class="py-8 px-6 text-center" style="border-right: 0.5px solid rgba(126,200,227,.1);">
-    <div class="font-display font-bold text-sky text-3xl">4</div>
+  <div class="py-8 px-6 text-center" style="border-right:0.5px solid rgba(126,200,227,.1);">
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#2A87D0; font-size:1.8rem;">4</div>
     <div class="text-slate-light text-xs mt-1.5 leading-snug">Roles con permisos diferenciados</div>
   </div>
-  <div class="py-8 px-6 text-center" style="border-right: 0.5px solid rgba(126,200,227,.1);">
-    <div class="font-display font-bold text-sky text-3xl">3</div>
+  <div class="py-8 px-6 text-center" style="border-right:0.5px solid rgba(126,200,227,.1);">
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#2A87D0; font-size:1.8rem;">3</div>
     <div class="text-slate-light text-xs mt-1.5 leading-snug">Categorías de agentes higiénicos</div>
   </div>
   <div class="py-8 px-6 text-center">
-    <div class="font-display font-bold text-sky text-3xl">24/7</div>
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#2A87D0; font-size:1.8rem;">24/7</div>
     <div class="text-slate-light text-xs mt-1.5 leading-snug">Monitoreo automático de vencimientos</div>
   </div>
 </div>
 
 
-<!-- ═══════════════════════════════════════════
-     BENEFICIOS
-════════════════════════════════════════════ -->
+<!-- ═══════════════ GALERÍA / CARRUSEL ════════ -->
+<section id="sistema" class="py-20 px-6 bg-night">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <p class="text-sky-light text-xs font-semibold tracking-widest uppercase mb-3">El sistema en acción</p>
+      <div class="divider"></div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:1.75rem; margin-bottom:.75rem;">
+        Así se ve GISSO por dentro
+      </h2>
+      <p class="text-slate text-sm max-w-lg mx-auto leading-relaxed">
+        Pantallas reales del sistema, funcionando hoy en la industria minera de Jujuy.
+      </p>
+    </div>
+
+    <!-- Carrusel principal -->
+    <div class="reveal" style="position:relative;">
+
+      <!-- Slide container -->
+      <div style="overflow:hidden; border-radius:16px;">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="carousel-slide">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dot" style="background:#E24B4A;"></div>
+                <div class="browser-dot" style="background:#EF9F27;"></div>
+                <div class="browser-dot" style="background:#2A87D0;"></div>
+                <div class="browser-url">app.gisso.com.ar / muestras</div>
+              </div>
+              <div class="browser-body">
+                <img src="img/muestras.png" alt="Módulo de gestión de muestras higiénicas — GISSO" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dot" style="background:#E24B4A;"></div>
+                <div class="browser-dot" style="background:#EF9F27;"></div>
+                <div class="browser-dot" style="background:#2A87D0;"></div>
+                <div class="browser-url">app.gisso.com.ar / equipos</div>
+              </div>
+              <div class="browser-body">
+                <img src="img/equipos.png" alt="Registro de equipos y calibraciones — GISSO" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dot" style="background:#E24B4A;"></div>
+                <div class="browser-dot" style="background:#EF9F27;"></div>
+                <div class="browser-dot" style="background:#2A87D0;"></div>
+                <div class="browser-url">app.gisso.com.ar / ges</div>
+              </div>
+              <div class="browser-body">
+                <img src="img/ges.png" alt="Gestión de Grupos de Exposición Similar — GISSO" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <div class="browser-dot" style="background:#E24B4A;"></div>
+                <div class="browser-dot" style="background:#EF9F27;"></div>
+                <div class="browser-dot" style="background:#2A87D0;"></div>
+                <div class="browser-url">app.gisso.com.ar / usuarios</div>
+              </div>
+              <div class="browser-body">
+                <img src="img/usuarios.png" alt="Gestión de usuarios y roles — GISSO" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Flechas -->
+      <button id="prevBtn" onclick="moveCarousel(-1)"
+        style="position:absolute; left:-20px; top:50%; transform:translateY(-50%);
+               width:40px; height:40px; border-radius:50%; border:0.5px solid rgba(126,200,227,.3);
+               background:#1C2B3A; color:#7EC8E3; font-size:18px; cursor:pointer;
+               display:flex; align-items:center; justify-content:center; z-index:10;
+               transition: background .2s;">
+        ‹
+      </button>
+      <button id="nextBtn" onclick="moveCarousel(1)"
+        style="position:absolute; right:-20px; top:50%; transform:translateY(-50%);
+               width:40px; height:40px; border-radius:50%; border:0.5px solid rgba(126,200,227,.3);
+               background:#1C2B3A; color:#7EC8E3; font-size:18px; cursor:pointer;
+               display:flex; align-items:center; justify-content:center; z-index:10;
+               transition: background .2s;">
+        ›
+      </button>
+    </div>
+
+    <!-- Dots -->
+    <div style="display:flex; justify-content:center; gap:8px; margin-top:20px;">
+      <button class="carousel-dot active" onclick="goToSlide(0)" id="dot-0"></button>
+      <button class="carousel-dot" onclick="goToSlide(1)" id="dot-1"></button>
+      <button class="carousel-dot" onclick="goToSlide(2)" id="dot-2"></button>
+      <button class="carousel-dot" onclick="goToSlide(3)" id="dot-3"></button>
+    </div>
+
+    <!-- Thumbnails -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:16px;">
+      <div class="thumb active" id="thumb-0" onclick="goToSlide(0)">
+        <img src="img/muestras.png" alt="Muestras"/>
+        <div style="padding:6px 8px; background:#243447; font-size:10px; color:#7EC8E3; text-align:center;">Muestras</div>
+      </div>
+      <div class="thumb" id="thumb-1" onclick="goToSlide(1)">
+        <img src="img/equipos.png" alt="Equipos"/>
+        <div style="padding:6px 8px; background:#243447; font-size:10px; color:#6B7A8D; text-align:center;">Equipos</div>
+      </div>
+      <div class="thumb" id="thumb-2" onclick="goToSlide(2)">
+        <img src="img/ges.png" alt="GES"/>
+        <div style="padding:6px 8px; background:#243447; font-size:10px; color:#6B7A8D; text-align:center;">GES</div>
+      </div>
+      <div class="thumb" id="thumb-3" onclick="goToSlide(3)">
+        <img src="img/usuarios.png" alt="Usuarios"/>
+        <div style="padding:6px 8px; background:#243447; font-size:10px; color:#6B7A8D; text-align:center;">Usuarios</div>
+      </div>
+    </div>
+
+    <!-- Etiqueta activa -->
+    <p id="slideLabel" style="text-align:center; color:#6B7A8D; font-size:12px; margin-top:14px;">
+      Gestión de muestras higiénicas por categoría de agente de riesgo
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════ BENEFICIOS ════════════════ -->
 <section id="beneficios" class="py-20 px-6 bg-slate-pale">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-sky text-xs font-semibold tracking-widest uppercase mb-3">Por qué GISSO</p>
       <div class="divider"></div>
-      <h2 class="font-display font-bold text-3xl text-night mb-4">Todo el ciclo SSO en un solo lugar</h2>
-      <p class="text-slate max-w-xl mx-auto text-sm leading-relaxed">
-        Desde la toma de muestra en campo hasta el informe final, GISSO cubre cada etapa del proceso de gestión de salud y seguridad ocupacional.
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:1.75rem; margin-bottom:.75rem;">
+        Todo el ciclo SSO en un solo lugar
+      </h2>
+      <p class="text-slate text-sm max-w-xl mx-auto leading-relaxed">
+        Desde la toma de muestra en campo hasta el informe final, GISSO cubre cada etapa del proceso.
       </p>
     </div>
     <div class="feat-grid grid grid-cols-3 gap-5">
-
       <div class="feat-card bg-white rounded-xl p-6 border border-slate-light reveal">
-        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-sky text-xl">⚠</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Alertas automáticas de vencimiento</h3>
+        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-xl" style="color:#2A87D0;">⚠</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Alertas automáticas de vencimiento</h3>
         <p class="text-slate text-xs leading-relaxed">El sistema detecta calibraciones próximas a vencer y notifica con anticipación, evitando incumplimientos normativos.</p>
       </div>
-
       <div class="feat-card bg-white rounded-xl p-6 border border-slate-light reveal">
-        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-sky text-xl">🧪</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Gestión completa de muestras</h3>
-        <p class="text-slate text-xs leading-relaxed">Registrá, seguí y reportá muestras de agentes químicos, físicos y ergonómicos desde la toma hasta el análisis de laboratorio.</p>
+        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-xl" style="color:#2A87D0;">🧪</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Gestión completa de muestras</h3>
+        <p class="text-slate text-xs leading-relaxed">Registrá, seguí y reportá muestras de agentes químicos, físicos y ergonómicos desde la toma hasta el análisis.</p>
       </div>
-
       <div class="feat-card bg-white rounded-xl p-6 border border-slate-light reveal">
-        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-sky text-xl">👥</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Control por roles y permisos</h3>
-        <p class="text-slate text-xs leading-relaxed">Administrador, Laboratorio, Calibradora y Visualizador. Cada usuario accede a lo que necesita, sin complejidad innecesaria.</p>
+        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-xl" style="color:#2A87D0;">👥</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Control por roles y permisos</h3>
+        <p class="text-slate text-xs leading-relaxed">Administrador, Laboratorio, Calibradora y Visualizador. Cada usuario accede a lo que necesita.</p>
       </div>
-
       <div class="feat-card bg-white rounded-xl p-6 border border-slate-light reveal">
-        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-sky text-xl">📊</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Reportes e indicadores GES</h3>
+        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-xl" style="color:#2A87D0;">📊</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Reportes e indicadores GES</h3>
         <p class="text-slate text-xs leading-relaxed">Generá informes de Grupos de Exposición Similar con categorización automática: aceptable, tolerable o inaceptable.</p>
       </div>
-
       <div class="feat-card bg-white rounded-xl p-6 border border-slate-light reveal">
-        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-sky text-xl">📋</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Certificados y trazabilidad</h3>
-        <p class="text-slate text-xs leading-relaxed">Cargá certificados de calibración, vinculalos a equipos y mantené un historial completo, auditable y disponible en todo momento.</p>
+        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-xl" style="color:#2A87D0;">📋</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Certificados y trazabilidad</h3>
+        <p class="text-slate text-xs leading-relaxed">Cargá certificados, vinculalos a equipos y mantené un historial completo y auditable en todo momento.</p>
       </div>
-
       <div class="feat-card bg-white rounded-xl p-6 border border-slate-light reveal">
-        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-sky text-xl">☁</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">100% en la nube</h3>
-        <p class="text-slate text-xs leading-relaxed">Accedé desde cualquier dispositivo y sede sin instalaciones. Infraestructura robusta y segura disponible las 24 horas.</p>
+        <div class="w-10 h-10 rounded-lg bg-sky-pale flex items-center justify-center mb-4 text-xl" style="color:#2A87D0;">☁</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">100% en la nube</h3>
+        <p class="text-slate text-xs leading-relaxed">Accedé desde cualquier dispositivo y sede sin instalaciones. Infraestructura robusta disponible las 24 horas.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     MÓDULOS
-════════════════════════════════════════════ -->
+<!-- ═══════════════ MÓDULOS ═══════════════════ -->
 <section id="modulos" class="py-20 px-6 bg-night">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-sky-light text-xs font-semibold tracking-widest uppercase mb-3">Módulos del sistema</p>
       <div class="divider"></div>
-      <h2 class="font-display font-bold text-white text-3xl mb-4">Una plataforma, todos los módulos</h2>
-      <p class="text-slate-light text-sm max-w-xl mx-auto leading-relaxed">
-        GISSO integra en un solo sistema todos los procesos críticos de higiene y seguridad ocupacional de tu empresa.
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:1.75rem; margin-bottom:.75rem;">
+        Una plataforma, todos los módulos
+      </h2>
+      <p class="text-slate text-sm max-w-xl mx-auto leading-relaxed">
+        GISSO integra en un solo sistema todos los procesos críticos de higiene y seguridad ocupacional.
       </p>
     </div>
     <div class="mod-grid grid grid-cols-2 gap-4">
-
-      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background: #243447; border: 0.5px solid rgba(126,200,227,.15);">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-sky-light text-lg" style="background: rgba(42,135,208,.2);">🔧</div>
-        <div>
-          <h3 class="font-display font-bold text-white text-sm mb-1">Equipos y herramientas</h3>
-          <p class="text-slate text-xs leading-relaxed">Inventario completo con estados, marcas, modelos, números de serie y fechas de vencimiento por sede.</p>
-        </div>
+      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background:#243447; border:0.5px solid rgba(126,200,227,.15);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg" style="background:rgba(42,135,208,.2); color:#7EC8E3;">🔧</div>
+        <div><h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:.875rem; margin-bottom:.25rem;">Equipos y herramientas</h3><p class="text-slate text-xs leading-relaxed">Inventario completo con estados, marcas, modelos, números de serie y fechas de vencimiento por sede.</p></div>
       </div>
-
-      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background: #243447; border: 0.5px solid rgba(126,200,227,.15);">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-sky-light text-lg" style="background: rgba(42,135,208,.2);">📜</div>
-        <div>
-          <h3 class="font-display font-bold text-white text-sm mb-1">Calibración</h3>
-          <p class="text-slate text-xs leading-relaxed">Gestión de certificados, carga de documentos, control de vigencia y alertas automáticas de vencimiento.</p>
-        </div>
+      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background:#243447; border:0.5px solid rgba(126,200,227,.15);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg" style="background:rgba(42,135,208,.2); color:#7EC8E3;">📜</div>
+        <div><h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:.875rem; margin-bottom:.25rem;">Calibración</h3><p class="text-slate text-xs leading-relaxed">Gestión de certificados, carga de documentos, control de vigencia y alertas automáticas de vencimiento.</p></div>
       </div>
-
-      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background: #243447; border: 0.5px solid rgba(126,200,227,.15);">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-sky-light text-lg" style="background: rgba(42,135,208,.2);">🧪</div>
-        <div>
-          <h3 class="font-display font-bold text-white text-sm mb-1">Muestras higiénicas</h3>
-          <p class="text-slate text-xs leading-relaxed">Registro de muestras químicas, físicas y ergonómicas con seguimiento de estado, cassette y laboratorio asignado.</p>
-        </div>
+      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background:#243447; border:0.5px solid rgba(126,200,227,.15);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg" style="background:rgba(42,135,208,.2); color:#7EC8E3;">🧪</div>
+        <div><h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:.875rem; margin-bottom:.25rem;">Muestras higiénicas</h3><p class="text-slate text-xs leading-relaxed">Registro de muestras químicas, físicas y ergonómicas con seguimiento de estado, cassette y laboratorio.</p></div>
       </div>
-
-      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background: #243447; border: 0.5px solid rgba(126,200,227,.15);">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-sky-light text-lg" style="background: rgba(42,135,208,.2);">👥</div>
-        <div>
-          <h3 class="font-display font-bold text-white text-sm mb-1">Gestión de GES</h3>
-          <p class="text-slate text-xs leading-relaxed">Grupos de Exposición Similar con evaluación de riesgo, categorización normativa y decisión por agente.</p>
-        </div>
+      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background:#243447; border:0.5px solid rgba(126,200,227,.15);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg" style="background:rgba(42,135,208,.2); color:#7EC8E3;">👥</div>
+        <div><h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:.875rem; margin-bottom:.25rem;">Gestión de GES</h3><p class="text-slate text-xs leading-relaxed">Grupos de Exposición Similar con evaluación de riesgo, categorización normativa y decisión por agente.</p></div>
       </div>
-
-      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background: #243447; border: 0.5px solid rgba(126,200,227,.15);">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-sky-light text-lg" style="background: rgba(42,135,208,.2);">📈</div>
-        <div>
-          <h3 class="font-display font-bold text-white text-sm mb-1">Dashboard e indicadores</h3>
-          <p class="text-slate text-xs leading-relaxed">Panel de control con métricas clave, alertas activas, actividad reciente y resumen del estado general del sistema.</p>
-        </div>
+      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background:#243447; border:0.5px solid rgba(126,200,227,.15);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg" style="background:rgba(42,135,208,.2); color:#7EC8E3;">📈</div>
+        <div><h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:.875rem; margin-bottom:.25rem;">Dashboard e indicadores</h3><p class="text-slate text-xs leading-relaxed">Panel de control con métricas clave, alertas activas y resumen del estado general del sistema.</p></div>
       </div>
-
-      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background: #243447; border: 0.5px solid rgba(126,200,227,.15);">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-sky-light text-lg" style="background: rgba(42,135,208,.2);">🔐</div>
-        <div>
-          <h3 class="font-display font-bold text-white text-sm mb-1">Roles y permisos</h3>
-          <p class="text-slate text-xs leading-relaxed">Administración de accesos con perfiles diferenciados para cada tipo de usuario, con control total del administrador.</p>
-        </div>
+      <div class="mod-card rounded-xl p-5 flex items-start gap-4 reveal" style="background:#243447; border:0.5px solid rgba(126,200,227,.15);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg" style="background:rgba(42,135,208,.2); color:#7EC8E3;">🔐</div>
+        <div><h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:.875rem; margin-bottom:.25rem;">Roles y permisos</h3><p class="text-slate text-xs leading-relaxed">Administración de accesos con perfiles diferenciados para cada tipo de usuario del sistema.</p></div>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     ROLES
-════════════════════════════════════════════ -->
+<!-- ═══════════════ ROLES ═════════════════════ -->
 <section id="roles" class="py-20 px-6 bg-white">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-sky text-xs font-semibold tracking-widest uppercase mb-3">Perfiles de usuario</p>
       <div class="divider"></div>
-      <h2 class="font-display font-bold text-night text-3xl mb-4">Diseñado para cada rol de tu equipo</h2>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:1.75rem; margin-bottom:.75rem;">
+        Diseñado para cada rol de tu equipo
+      </h2>
       <p class="text-slate text-sm max-w-xl mx-auto leading-relaxed">
-        Cada usuario accede únicamente a las funciones que necesita, con los permisos correctos y sin exposición a información irrelevante para su rol.
+        Cada usuario accede únicamente a las funciones que necesita, con los permisos correctos.
       </p>
     </div>
     <div class="roles-grid grid grid-cols-4 gap-5">
-
-      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border: 0.5px solid #CBD5E0;">
-        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-sky text-2xl">⚙</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Administrador</h3>
-        <p class="text-slate text-xs leading-relaxed">Control total. Gestiona usuarios, equipos, muestras, reportes y la configuración general del sistema.</p>
+      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border:0.5px solid #CBD5E0;">
+        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-2xl" style="color:#2A87D0;">⚙</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Administrador</h3>
+        <p class="text-slate text-xs leading-relaxed">Control total. Gestiona usuarios, equipos, muestras, reportes y configuración general.</p>
       </div>
-
-      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border: 0.5px solid #CBD5E0;">
-        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-sky text-2xl">🧪</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Laboratorio</h3>
-        <p class="text-slate text-xs leading-relaxed">Registra y gestiona muestras. Actualiza estados y resultados desde el laboratorio de análisis.</p>
+      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border:0.5px solid #CBD5E0;">
+        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-2xl" style="color:#2A87D0;">🧪</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Laboratorio</h3>
+        <p class="text-slate text-xs leading-relaxed">Registra y gestiona muestras. Actualiza estados y resultados desde el laboratorio.</p>
       </div>
-
-      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border: 0.5px solid #CBD5E0;">
-        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-sky text-2xl">📜</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Calibradora</h3>
-        <p class="text-slate text-xs leading-relaxed">Carga certificados de calibración, actualiza el estado de equipos y gestiona las fechas de vencimiento.</p>
+      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border:0.5px solid #CBD5E0;">
+        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-2xl" style="color:#2A87D0;">📜</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Calibradora</h3>
+        <p class="text-slate text-xs leading-relaxed">Carga certificados, actualiza equipos y gestiona fechas de vencimiento.</p>
       </div>
-
-      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border: 0.5px solid #CBD5E0;">
-        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-sky text-2xl">👁</div>
-        <h3 class="font-display font-bold text-night text-sm mb-2">Visualizador</h3>
-        <p class="text-slate text-xs leading-relaxed">Acceso de solo lectura. Consulta datos, reportes e indicadores sin modificar ninguna información.</p>
+      <div class="bg-slate-pale rounded-xl p-6 text-center reveal" style="border:0.5px solid #CBD5E0;">
+        <div class="w-12 h-12 rounded-full bg-sky-pale flex items-center justify-center mx-auto mb-4 text-2xl" style="color:#2A87D0;">👁</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:#1C2B3A; font-size:.875rem; margin-bottom:.5rem;">Visualizador</h3>
+        <p class="text-slate text-xs leading-relaxed">Acceso de solo lectura. Consulta datos y reportes sin modificar información.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     CTA FINAL
-════════════════════════════════════════════ -->
+<!-- ═══════════════ CTA FINAL ════════════════ -->
 <section id="contacto" class="py-20 px-6 bg-slate-pale">
   <div class="max-w-3xl mx-auto text-center reveal">
     <div class="bg-night rounded-2xl px-8 py-14">
       <p class="text-sky-light text-xs font-semibold tracking-widest uppercase mb-4">Empezá hoy</p>
-      <h2 class="font-display font-bold text-white text-3xl mb-4 leading-snug">
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; font-size:1.75rem; margin-bottom:.75rem; line-height:1.3;">
         ¿Listo para modernizar<br>tu gestión de SSO?
       </h2>
       <p class="text-slate-light text-sm leading-relaxed mb-8 max-w-md mx-auto">
         GISSO ya está funcionando en la industria minera de Jujuy. Pedí una demo gratuita y te mostramos el sistema en acción, adaptado a tu empresa.
       </p>
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href="https://wa.me/5493884633642?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
+        <a href="https://wa.me/5493884000000?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
            target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 font-medium px-7 py-3.5 rounded-xl no-underline transition-opacity hover:opacity-90"
+           class="inline-flex items-center gap-2 font-medium px-7 py-3.5 rounded-xl no-underline hover:opacity-90 transition-opacity"
            style="background:#25D366; color:white;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.12 1.523 5.855L.057 23.272a.75.75 0 00.918.899l5.535-1.453A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.96-1.357l-.356-.211-3.684.968.983-3.594-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.12 1.523 5.855L.057 23.272a.75.75 0 00.918.899l5.535-1.453A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.96-1.357l-.356-.211-3.684.968.983-3.594-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
           Solicitar demo por WhatsApp
         </a>
-        <a href="mailto:enriqif@gmail.com"
-           class="inline-flex items-center gap-2 text-sky-light font-medium px-7 py-3.5 rounded-xl no-underline transition-colors"
-           style="border: 0.5px solid rgba(126,200,227,.4);">
+        <a href="mailto:contacto@gisso.com.ar"
+           class="inline-flex items-center gap-2 text-sky-light font-medium px-7 py-3.5 rounded-xl no-underline"
+           style="border:0.5px solid rgba(126,200,227,.4);">
           ✉ Escribirnos por email
         </a>
       </div>
@@ -448,10 +587,8 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════ -->
-<footer class="bg-night py-10 px-6" style="border-top: 0.5px solid rgba(126,200,227,.1);">
+<!-- ═══════════════ FOOTER ════════════════════ -->
+<footer class="bg-night py-10 px-6" style="border-top:0.5px solid rgba(126,200,227,.1);">
   <div class="max-w-6xl mx-auto flex flex-col items-center gap-4">
     <div class="flex items-center gap-3">
       <svg width="24" height="24" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
@@ -463,10 +600,11 @@
         <rect x="38" y="26" width="6" height="24" rx="2" fill="white"/>
         <rect x="46" y="30" width="6" height="20" rx="2" fill="#7EC8E3" opacity=".85"/>
       </svg>
-      <span class="font-display font-bold text-white tracking-widest">GISSO</span>
+      <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:white; letter-spacing:.2em;">GISSO</span>
     </div>
     <p class="text-slate text-xs">Gestión Integral de Salud y Seguridad Ocupacional</p>
     <div class="flex gap-6">
+      <a href="#sistema"    class="text-slate text-xs no-underline hover:text-sky-light transition-colors">El sistema</a>
       <a href="#modulos"    class="text-slate text-xs no-underline hover:text-sky-light transition-colors">Módulos</a>
       <a href="#beneficios" class="text-slate text-xs no-underline hover:text-sky-light transition-colors">Beneficios</a>
       <a href="#roles"      class="text-slate text-xs no-underline hover:text-sky-light transition-colors">Roles</a>
@@ -477,25 +615,56 @@
 </footer>
 
 
-<!-- WhatsApp floating button -->
-<a href="https://wa.me/5493884633642?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/5493884000000?text=Hola%2C%20quiero%20solicitar%20una%20demo%20de%20GISSO"
    target="_blank" rel="noopener"
    class="wa-btn fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center z-50"
    style="background:#25D366;" aria-label="Contactar por WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.12 1.523 5.855L.057 23.272a.75.75 0 00.918.899l5.535-1.453A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.96-1.357l-.356-.211-3.684.968.983-3.594-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-  </svg>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.12 1.523 5.855L.057 23.272a.75.75 0 00.918.899l5.535-1.453A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.96-1.357l-.356-.211-3.684.968.983-3.594-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
 </a>
 
 
-<!-- Scroll reveal script -->
 <script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
-  reveals.forEach(r => observer.observe(r));
+  // ── Carrusel ──────────────────────────────
+  const labels = [
+    'Gestión de muestras higiénicas por categoría de agente de riesgo',
+    'Registro de equipos y control de calibraciones',
+    'Grupos de Exposición Similar — evaluación y categorización de riesgo',
+    'Administración de usuarios, roles y permisos del sistema'
+  ];
+  let current = 0;
+  const total = 4;
+
+  function updateCarousel() {
+    document.getElementById('carouselTrack').style.transform = `translateX(-${current * 100}%)`;
+    for (let i = 0; i < total; i++) {
+      document.getElementById('dot-' + i).classList.toggle('active', i === current);
+      const th = document.getElementById('thumb-' + i);
+      th.classList.toggle('active', i === current);
+      th.querySelector('div').style.color = i === current ? '#7EC8E3' : '#6B7A8D';
+    }
+    document.getElementById('slideLabel').textContent = labels[current];
+  }
+
+  function moveCarousel(dir) {
+    current = (current + dir + total) % total;
+    updateCarousel();
+  }
+
+  function goToSlide(n) {
+    current = n;
+    updateCarousel();
+  }
+
+  // Auto-avance cada 5s
+  setInterval(() => moveCarousel(1), 5000);
+
+  // ── Scroll reveal ─────────────────────────
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 </script>
 
 </body>
