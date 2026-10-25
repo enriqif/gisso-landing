@@ -287,6 +287,15 @@
 
     /* Margen inferior de headers */
     .section-header-mb { margin-bottom: 80px; }
+
+    /* ── Asistente ─────────────────────────── */
+    .ai-tab { font-size:.75rem; font-weight:600; padding:7px 14px; border-radius:6px; border:1px solid rgba(30,40,50,.12); background:#fff; color:#4A5568; cursor:pointer; transition:all .2s; }
+    .ai-tab.active { background:#1E2832; color:#4FD1C5; border-color:#1E2832; }
+    .ai-q { display:inline-block; font-size:.8125rem; color:#1E2832; background:#fff; border:1px solid rgba(79,209,197,.45); border-radius:999px; padding:8px 14px; margin:4px; }
+    .ai-card { background:#fff; border:1px solid rgba(30,40,50,.08); border-radius:10px; padding:22px; }
+    .ai-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    @media(max-width:900px){ .ai-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:560px){ .ai-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -299,6 +308,7 @@
     </a>
     <div id="navLinks" style="display:flex; align-items:center; gap:28px; flex:1; justify-content:center;">
       <a href="#sistema"    style="font-size:.8125rem; font-weight:500; color:#4FD1C5; text-decoration:none;">El sistema</a>
+      <a href="#asistente"  style="font-size:.8125rem; font-weight:500; color:#4FD1C5; text-decoration:none;">Asistente</a>
       <a href="#modulos"    style="font-size:.8125rem; font-weight:500; color:#4FD1C5; text-decoration:none;">Módulos</a>
       <a href="#beneficios" style="font-size:.8125rem; font-weight:500; color:#4FD1C5; text-decoration:none;">Beneficios</a>
       <a href="#roles"      style="font-size:.8125rem; font-weight:500; color:#4FD1C5; text-decoration:none;">Perfiles</a>
@@ -318,6 +328,7 @@
   </div>
   <div id="mobileMenu" style="display:none; background:#1E2832; border-top:1px solid rgba(79,209,197,.12); padding:8px 24px 16px;">
     <a href="#sistema"    onclick="toggleMenu()" style="display:block; padding:12px 0; border-bottom:1px solid rgba(79,209,197,.1); color:#4FD1C5; text-decoration:none; font-size:.875rem;">El sistema</a>
+    <a href="#asistente"  onclick="toggleMenu()" style="display:block; padding:12px 0; border-bottom:1px solid rgba(79,209,197,.1); color:#4FD1C5; text-decoration:none; font-size:.875rem;">Asistente</a>
     <a href="#modulos"    onclick="toggleMenu()" style="display:block; padding:12px 0; border-bottom:1px solid rgba(79,209,197,.1); color:#4FD1C5; text-decoration:none; font-size:.875rem;">Módulos</a>
     <a href="#beneficios" onclick="toggleMenu()" style="display:block; padding:12px 0; border-bottom:1px solid rgba(79,209,197,.1); color:#4FD1C5; text-decoration:none; font-size:.875rem;">Beneficios</a>
     <a href="#roles"      onclick="toggleMenu()" style="display:block; padding:12px 0; border-bottom:1px solid rgba(79,209,197,.1); color:#4FD1C5; text-decoration:none; font-size:.875rem;">Perfiles</a>
@@ -347,6 +358,11 @@
 
       <!-- Left -->
       <div>
+        <a href="#asistente" style="display:inline-flex; align-items:center; gap:8px; margin:0 8px 12px 0; padding:4px 6px 4px 4px; border-radius:999px; background:rgba(79,209,197,.12); border:1px solid rgba(79,209,197,.35); text-decoration:none;">
+          <span style="font-size:.625rem; font-weight:700; color:#1E2832; background:#4FD1C5; padding:2px 8px; border-radius:999px; letter-spacing:.06em; text-transform:uppercase;">Nuevo</span>
+          <span style="font-size:.75rem; font-weight:500; color:#E0F5F3;">Asistente con IA integrado</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4FD1C5" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a><br>
         <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; padding:5px 14px; border-radius:4px; background:rgba(42,135,208,.1); border:1px solid rgba(42,135,208,.2);">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="#4FD1C5"><circle cx="6" cy="6" r="4"/></svg>
           <span style="font-size:.6875rem; font-weight:600; color:#4FD1C5; letter-spacing:.08em; text-transform:uppercase;">Plataforma para la industria minera</span>
@@ -357,7 +373,7 @@
         </h1>
 
         <p style="font-size:.9375rem; color:#718096; line-height:1.75; margin:0 0 36px; max-width:420px;">
-          GISSO centraliza el control de muestras higiénicas, equipos, calibraciones y reportes normativos en una única plataforma. Diseñada para la realidad operativa de la industria minera argentina.
+          GISSO centraliza el control de muestras higiénicas, equipos, calibraciones y reportes normativos en una única plataforma, ahora con un asistente que responde tus consultas al instante. Diseñada para la realidad operativa de la industria minera argentina.
         </p>
 
         <div class="hero-btns" style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -600,6 +616,90 @@
     <p id="slideLabel" style="text-align:center; color:#4A5568; font-size:.75rem; margin-top:14px; letter-spacing:.01em;">
       Gestión de muestras higiénicas por categoría de agente de riesgo
     </p>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     ASISTENTE
+════════════════════════════════════════════ -->
+<section id="asistente" class="section-white section-px" style="background:#FFFFFF !important; padding:120px 24px;">
+  <div style="max-width:1120px; margin:0 auto;">
+
+    <div class="reveal" style="text-align:center; margin-bottom:56px;">
+      <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4FD1C5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg>
+        <p class="t-eyebrow" style="margin:0;">Nuevo · Asistente GISSO</p>
+      </div>
+      <div class="accent-line"></div>
+      <h2 class="t-display" style="font-size:1.875rem; font-weight:700; color:#1E2832; margin:0 0 12px; letter-spacing:-.01em;">
+        Preguntale a GISSO, con tus palabras
+      </h2>
+      <p style="font-size:.9375rem; color:#718096; max-width:560px; margin:0 auto; line-height:1.7;">
+        Un asistente con inteligencia artificial integrado al sistema. Escribís tu consulta y responde al instante con los datos reales de tu operación: muestras, equipos, GES y resultados fuera de límite.
+      </p>
+    </div>
+
+    <div class="reveal" style="margin-bottom:48px;">
+      <div style="display:flex; justify-content:center; gap:8px; margin-bottom:16px;">
+        <button class="ai-tab active" onclick="showAiShot(0, this)">Resultados fuera de límite</button>
+        <button class="ai-tab" onclick="showAiShot(1, this)">Equipos y vencimientos</button>
+      </div>
+        <div class="browser-frame ai-shot">
+          <div class="browser-bar">
+            <div class="browser-dot" style="background:#E24B4A;"></div>
+            <div class="browser-dot" style="background:#EF9F27;"></div>
+            <div class="browser-dot" style="background:#27C93F;"></div>
+            <div class="browser-url">app.gisso.com.ar / muestras · asistente</div>
+          </div>
+          <div class="browser-body"><img src="img/asistente-pmho.png" alt="Asistente de GISSO respondiendo sobre mediciones de ruido fuera de límite" loading="lazy"/></div>
+        </div>
+        <div class="browser-frame ai-shot" style="display:none;">
+          <div class="browser-bar">
+            <div class="browser-dot" style="background:#E24B4A;"></div>
+            <div class="browser-dot" style="background:#EF9F27;"></div>
+            <div class="browser-dot" style="background:#27C93F;"></div>
+            <div class="browser-url">app.gisso.com.ar / equipos · asistente</div>
+          </div>
+          <div class="browser-body"><img src="img/herramientas-asistente.png" alt="Asistente de GISSO respondiendo sobre equipos por estado y vencimientos" loading="lazy"/></div>
+        </div>
+    </div>
+
+    <div class="ai-grid" style="margin-bottom:48px;">
+        <div class="ai-card reveal">
+          <div class="icon-box" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4FD1C5" stroke-width="1.75" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+          <h3 class="t-display" style="font-size:.9375rem; font-weight:600; color:#1E2832; margin:0 0 6px;">Datos reales, al instante</h3>
+          <p style="font-size:.8125rem; color:#718096; line-height:1.6; margin:0;">Consulta la información cargada en GISSO y responde con números concretos, sin armar reportes ni filtros.</p>
+        </div>
+        <div class="ai-card reveal">
+          <div class="icon-box" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4FD1C5" stroke-width="1.75" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <h3 class="t-display" style="font-size:.9375rem; font-weight:600; color:#1E2832; margin:0 0 6px;">Compara y agrupa</h3>
+          <p style="font-size:.8125rem; color:#718096; line-height:1.6; margin:0;">Por sitio, área, estado o período: “este mes contra el anterior”, “por sitio”, “los próximos 30 días”.</p>
+        </div>
+        <div class="ai-card reveal">
+          <div class="icon-box" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4FD1C5" stroke-width="1.75" stroke-linecap="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+          <h3 class="t-display" style="font-size:.9375rem; font-weight:600; color:#1E2832; margin:0 0 6px;">Seguro y de solo lectura</h3>
+          <p style="font-size:.8125rem; color:#718096; line-height:1.6; margin:0;">No crea, modifica ni borra nada, y no expone datos personales de los trabajadores.</p>
+        </div>
+        <div class="ai-card reveal">
+          <div class="icon-box" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4FD1C5" stroke-width="1.75" stroke-linecap="round"><path d="M12 6.25C10.8 5.5 9.2 5 7.5 5S4.2 5.5 3 6.25v13C4.2 18.5 5.8 18 7.5 18s3.3.5 4.5 1.25m0-13C13.2 5.5 14.8 5 16.5 5s3.3.5 4.5 1.25v13C19.8 18.5 18.2 18 16.5 18s-3.3.5-4.5 1.25m0-13v13"/></svg></div>
+          <h3 class="t-display" style="font-size:.9375rem; font-weight:600; color:#1E2832; margin:0 0 6px;">Te guía en el sistema</h3>
+          <p style="font-size:.8125rem; color:#718096; line-height:1.6; margin:0;">Explica conceptos y cómo usar cada módulo: qué es un GES, qué significa cada estado, cómo cargar una muestra.</p>
+        </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;">
+      <p style="font-size:.75rem; font-weight:600; color:#4A5568; letter-spacing:.08em; text-transform:uppercase; margin:0 0 12px;">Preguntas que ya responde</p>
+      <div style="max-width:820px; margin:0 auto;">
+          <span class="ai-q">¿Cuántos equipos hay en cada estado?</span>
+          <span class="ai-q">¿Qué equipos vencen en los próximos 30 días?</span>
+          <span class="ai-q">¿Este mes se tomaron más muestras que el mes pasado?</span>
+          <span class="ai-q">¿Qué GES son inaceptables y qué acción requieren?</span>
+          <span class="ai-q">¿Cuántas mediciones de ruido superan el límite?</span>
+          <span class="ai-q">¿Qué es un GES?</span>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -924,6 +1024,7 @@
     <p style="font-size:.75rem; color:#4A5568; margin:0;">Gestión Integral de Salud y Seguridad Ocupacional</p>
     <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
       <a href="#sistema"    style="font-size:.75rem; color:#4A5568; text-decoration:none;">El sistema</a>
+      <a href="#asistente"  style="font-size:.75rem; color:#4A5568; text-decoration:none;">Asistente</a>
       <a href="#modulos"    style="font-size:.75rem; color:#4A5568; text-decoration:none;">Módulos</a>
       <a href="#beneficios" style="font-size:.75rem; color:#4A5568; text-decoration:none;">Beneficios</a>
       <a href="#roles"      style="font-size:.75rem; color:#4A5568; text-decoration:none;">Perfiles</a>
@@ -983,6 +1084,13 @@
     try{f=window.self!==window.top;}catch(e){f=true;}
     if(f) document.body.classList.add('is-iframe');
   });
+</script>
+
+<script>
+  function showAiShot(n, btn) {
+    document.querySelectorAll('.ai-shot').forEach(function (el, i) { el.style.display = i === n ? 'block' : 'none'; });
+    document.querySelectorAll('.ai-tab').forEach(function (el) { el.classList.toggle('active', el === btn); });
+  }
 </script>
 
 </body>
